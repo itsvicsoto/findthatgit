@@ -4,10 +4,10 @@
   "main": "server/server.js",
   "scripts": {
     "pretest": "jshint .",
-    "start": "npm install && gulp dashboard-build && opn http://localhost:3001 && node server/server.js ",
+    "start": "node server/server.js ",
     "dev-watch": "NODE_ENV='local' node server/server.js",
     "build": "gulp dashboard-build",
-    "postinstall": "bower cache clean && bower install"
+    "postinstall": "bower cache clean && bower install && gulp dashboard-build"
   },
   "dependencies": {
     "async": "^2.1.2",
