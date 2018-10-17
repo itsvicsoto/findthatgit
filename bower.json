@@ -1,0 +1,35 @@
+{
+  "name": "findthatgithub",
+  "description": "findthatgithub",
+  "main": "server/server.js",
+  "authors": [
+    "Victor Soto Barba <itsvicsoto@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.7",
+    "underscore": "^1.8.3",
+    "angular-ui-router": "ui-router#~0.2.15",
+    "angular-animate": "1.5.8"
+  },
+  "resolutions": {
+    "angular": "~1.5.7"
+  },
+  "group": {
+    "dashboard": [
+      "underscore",
+      "angular",
+      "angular-ui-router"
+    ]
+  }
+}

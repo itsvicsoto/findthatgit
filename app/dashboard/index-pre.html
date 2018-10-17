@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="" ng-app="findthatgit" ng-controller="MainController">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="fragment" content="!">
+
+    <title>FindThatGit</title>
+
+    <base href="/">
+
+    <link rel="manifest" href="/dashboard/manifest.json">
+    <link rel="stylesheet" type="text/css" href="//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href='//fonts.googleapis.com/css?family=Roboto:900,500,900italic,400italic,100,700italic,300,700,500italic,100italic,300italic,400' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"/>
+    <link rel="stylesheet" href="/dashboard/assets/js/codemirror/codemirror.css">
+    <link rel="stylesheet" href="/dashboard/assets/js/codemirror/themes/material.css">
+    
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/fav/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/fav/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/fav/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/fav/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/fav/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/fav/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/fav/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/fav/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/fav/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/fav/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/fav/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/fav/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/fav/favicon-16x16.png">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- build:css /assets/css/application.css -->
+    <link rel="stylesheet" href="/dashboard/assets/css/vendor.min.css?v=%%GULP_INJECT_VERSION%%">
+    <link rel="stylesheet" href="/dashboard/assets/css/style.css?v=%%GULP_INJECT_VERSION%%">
+    <!-- endbuild -->
+
+</head>
+
+<body>
+
+<!--MENU PANEL-->
+<div ui-view></div>
+
+<script src="%%API%%/findthatgit.js?v=%%GULP_INJECT_VERSION%%"></script>
+
+<script src="/dashboard/assets/js/vendor.min.js?v=%%GULP_INJECT_VERSION%%"></script>
+<script src="/dashboard/assets/js/motherload.min.js?v=%%GULP_INJECT_VERSION%%"></script>
+<script src="/dashboard/assets/js/motherload-templates.min.js?v=%%GULP_INJECT_VERSION%%"></script>
+
+</body>
+
+</html>

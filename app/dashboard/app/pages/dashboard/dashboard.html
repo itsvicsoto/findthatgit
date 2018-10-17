@@ -1,0 +1,563 @@
+<div class="l-page__heading l-mobile-wrap-header" ng-show="findthatgit.viewportState.media == 'MOBILE'" style="border: 0;">
+
+  <div class="mobile-only">
+    <div class="left">
+      <ul class="l-mobile-actions-list">
+        <li class="item">
+          <a class="item-link -nav-drawer-icon" data-wk="minimode" layout-minimode="">
+              <i class="findthatgit-navigation-drawer-1"></i>
+            </a>
+        </li>
+      </ul>
+    </div>
+    <div class="center">
+      <h3 class="l-mobile-title">
+          Dashboard
+        </h3>
+    </div>
+    <div class="right">
+
+      <ul class="l-mobile-actions-list">
+        <li class="item">
+          <shared-change-currency feature="dashboard" findthatgit="findthatgit" ng-if="findthatgit.currentState == 'main.home'"></shared-change-currency>
+        </li>
+      </ul>
+
+      <!--<ul class="l-mobile-actions-list">
+          <li class="item" ng-if="findthatgit.currentUserType == 'BUSINESS'" permission-checker data-user-permissions="findthatgit.currentAccount.permissions" data-resource="INVOICES" data-grant="CREATE" data-action="delete">
+            <a ui-sref="main.invoices.addEdit({ invoiceId: 'new'})" class="item-link">
+              <i class="findthatgit-add-circle-1"></i>
+            </a>
+          </li>-->
+      <!--<li class="item">
+            <a href="#" class="item-link">
+              <i class="findthatgit-navigation-show-more-2"></i>
+            </a>
+          </li>-->
+      <!--<li class="item">
+            <a href="#" class="item-link">
+              <i class="findthatgit-check-box-1"></i>
+            </a>
+          </li>-->
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="l-mobile-wrap-body" ng-if="findthatgit.currentUserType == 'BUSINESS'">
+
+  <dashboard-profile-completion findthatgit="findthatgit"></dashboard-profile-completion>
+
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+      <div class="c-db-summary-box -payable">
+        <div class="upperbox">
+          <div>
+            <span class="amount">{{ vm.availableData.openInvoice['PAYABLE'].views[1].values[0] ? vm.availableData.openInvoice['PAYABLE'].views[1].values[0] : '0' }} </span>
+            <!-- <span class="currency">{{ vm.availableData.openInvoice['PAYABLE'].params.currency }}</span> -->
+            <span class="currency">{{ vm.currency.selectedCurrency }}</span>
+
+          </div>
+          <div class="count">{{ vm.availableData.openInvoice['PAYABLE'].views[0].values[0] ? vm.availableData.openInvoice['PAYABLE'].views[0].values[0] : '0' }} {{ vm.availableData.openInvoice['PAYABLE'].views[0].values[0] == 1 ? 'invoice' : 'invoices' }}</div>
+        </div>
+        <div class="lowerbox">Payable</div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+      <div class="c-db-summary-box -due-today">
+        <div class="upperbox">
+          <div>
+            <span class="amount">{{ vm.availableData.openInvoice['DUE'].views[1].values[0] ? vm.availableData.openInvoice['DUE'].views[1].values[0] : '0' }}</span>
+            <!-- <span class="currency">{{ vm.availableData.openInvoice['DUE'].params.currency }}</span> -->
+            <span class="currency">{{ vm.currency.selectedCurrency }}</span>
+          </div>
+          <div class="count">{{ vm.availableData.openInvoice['DUE'].views[0].values[0] ? vm.availableData.openInvoice['DUE'].views[0].values[0] : '0' }} {{ vm.availableData.openInvoice['DUE'].views[0].values[0] == 1 ? 'invoice' : 'invoices' }}</div>
+        </div>
+        <div class="lowerbox">Due Today</div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+      <div class="c-db-summary-box -overdue">
+        <div class="upperbox">
+          <div>
+            <span class="amount">{{ vm.availableData.openInvoice['OVERDUE'].views[1].values[0] ? vm.availableData.openInvoice['OVERDUE'].views[1].values[0] : '0' }}</span>
+            <!-- <span class="currency">{{ vm.availableData.openInvoice['OVERDUE'].params.currency }}</span> -->
+            <span class="currency">{{ vm.currency.selectedCurrency }}</span>
+          </div>
+          <div class="count">{{ vm.availableData.openInvoice['OVERDUE'].views[0].values[0] ? vm.availableData.openInvoice['OVERDUE'].views[0].values[0] : '0' }} {{ vm.availableData.openInvoice['OVERDUE'].views[0].values[0] == 1 ? 'invoice' : 'invoices' }}</div>
+        </div>
+        <div class="lowerbox">Overdue</div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3">
+      <div class="c-db-summary-box -revenue">
+        <div class="upperbox">
+          <div>
+            <span class="amount">{{vm.availableData.revenue.raw['PAID'].views[1].values[11] ? vm.availableData.revenue.raw['PAID'].views[1].values[11] : '0' }}</span>
+            <!-- <span class="currency">{{ vm.availableData.revenue.raw['PAID'].params.currency == '-' ? '' : vm.availableData.revenue.raw['PAID'].params.currency  }}</span> -->
+            <span class="currency">{{ vm.currency.selectedCurrency }}</span>
+          </div>
+          <div class="count">Last Month {{ vm.availableData.revenue.raw['PAID'].views[1].values[10] ? vm.availableData.revenue.raw['PAID'].views[1].values[10] : '0' }}</div>
+        </div>
+        <div class="lowerbox">Month's Revenue</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start of line chart and top customers row -->
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
+      <div class="c-db-standardbox">
+        <div class="header" style="margin-bottom: 0;">
+          <h3 class="title">This year's revenue</h3>
+          <h5 class="subtitle">Monthly ({{ vm.currency.selectedCurrency }})</h5>
+          <!-- <h5 class="subtitle">Monthly {{ vm.queryDataLineChart.series[0].params.currency == '-' ? '' : '(' + vm.queryDataLineChart.series[0].params.currency + ')' }}</h5> -->
+          <!-- <span class="currency">{{ vm.currency.selectedCurrency }}</span> -->
+        </div>
+        <div class="c-db-chartbox">
+          <generic-line-chart ng-if="vm.queryDataLineChart" data-chart-data="vm.queryDataLineChart"></generic-line-chart>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+      <div class="c-db-standardbox">
+        <div class="header">
+          <h3 class="title">Top Customers</h3>
+          <h5 class="subtitle">{{ vm.availableData.topCustomers.subtitle }}</h5>
+        </div>
+
+        <div class="inner -v-center" ng-show="vm.availableData.topCustomers && !vm.availableData.topCustomers.data.series.length > 0">
+          <div class="c-blankslate">
+            <p class="c-blankslate__paragraph">
+              No invoices have been paid this month.
+            </p>
+          </div>
+        </div>
+
+        <div ng-repeat="topCustomer in vm.availableData.topCustomers.data.series" class="c-db-percentbar">
+          <div class="name">{{ topCustomer.title }}</div>
+          <div class="bar" style="width: {{ vm.availableData.topCustomers.calculatePercent(topCustomer.views[1].values[0], vm.availableData.topCustomers.highestSum) }}%;">
+            <span class="bar-value" ng-class="{ '-below-fifty' : vm.availableData.topCustomers.calculatePercent(topCustomer.views[1].values[0], vm.availableData.topCustomers.highestSum) < 50 }">{{ topCustomer.views[1].values[0] }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <div class="c-db-standardbox -bottom-part">
+            <div class="header" style="margin-bottom: 18px;">
+              <h3 class="title">Recent Activity</h3>
+            </div>
+            <div class="c-db-recentactivities-wrapper">
+              <div ng-repeat="recentActivity in vm.availableData.recentActivities.data | limitTo:40" class="c-db-recentactivities">
+                <i class="icon {{ vm.findthatgitResourceIcon().getIconByResource(recentActivity.resource.type) }}"></i>
+                <div class="content">
+                  <!--<div class="tag">{{ recentActivity.resource.type }}</div>    -->
+                  <div class="title">{{ recentActivity.message }}</div>
+                  <div class="date">{{ vm.ConstantsDateDatetimeFormats.formatBrowserLocalWithTimestampWhenOlderThan('ddd h:mm A', recentActivity.timeCreated, 6) }}</div>
+                </div>
+              </div>
+            </div>
+
+            <!--<div class="c-db-recentactivities-viewall">
+                            <a href="#" class="link">View All</a>
+                        </div>-->
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+          <div class="c-db-standardbox -bottom-part">
+            <div class="header">
+              <h3 class="title">Payment Timing</h3>
+
+              <h5 class="subtitle">This Month ({{ vm.currency.selectedCurrency }})</h5>
+              <!-- <h5 class="subtitle">This Month {{ vm.availableData.paymentTiming.barChartJson.series[0].params.currency == '-' ? '' : '(' + vm.availableData.paymentTiming.barChartJson.series[0].params.currency + ')' }}</h5> -->
+            </div>
+            <div class="c-db-payment-timing-legends">
+              <div class="legend">
+                <span class="box-color -blue"></span>
+                <span class="label-val">Avg days paid after issue date</span>
+              </div>
+              <div class="legend">
+                <span class="box-color -green"></span>
+                <span class="label-val">Avg days early payment</span>
+              </div>
+              <div class="legend">
+                <span class="box-color -red"></span>
+                <span class="label-val">Avg days late payment</span>
+              </div>
+            </div>
+            <div class="c-db-payment-timing-chart">
+              <generic-bar-chart ng-if="vm.availableData.paymentTiming.barChartJson" data-height="200" data-category-percentage=".8" data-chart-data="vm.availableData.paymentTiming.barChartJson"></generic-bar-chart>
+            </div>
+            <!--<h5 class="text-center">Average monthly delay in payment after issue date</h5>-->
+
+            <!--<h5 class="text-center">Average monthly days paid WRT to due date</h5>
+                        <generic-bar-chart ng-if="vm.availableData.paymentTiming2" data-height="200"
+                        data-chart-data="vm.availableData.paymentTiming2"></generic-bar-chart>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3">
+      <div class="c-db-standardbox -bottom-part">
+        <div class="header">
+          <h3 class="title">Top Agents</h3>
+          <h5 class="subtitle">{{ vm.availableData.topAgents.subtitle }}</h5>
+        </div>
+
+        <div class="inner -v-center" ng-show="vm.availableData.topAgents && !vm.availableData.topAgents.data.series.length > 0">
+          <div class="c-blankslate">
+            <p class="c-blankslate__paragraph">
+              No invoices have been paid this month.
+            </p>
+          </div>
+        </div>
+
+        <div ng-repeat="topAgents in vm.availableData.topAgents.data.series" class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="c-db-percentbar-greenbox">
+              <div class="total-value">
+                {{ topAgents.views[1].values[vm.availableData.topAgents.currentMonthIndex] }}
+              </div>
+              <div class="inner">
+                <div class="c-db-percentbar -green-bar">
+                  <div class="bar" style="width: {{ topAgents.views[3].values[vm.availableData.topAgents.currentMonthIndex] }}%;"></div>
+                </div>
+                <div class="percent-value">
+                  {{ topAgents.views[3].values[vm.availableData.topAgents.currentMonthIndex] + '%' }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div class="c-db-revenue-chart">
+              <generic-bar-chart ng-if="vm.availableData.topAgents.barChartJson" data-height="40" data-labels="false" data-labels-y="false" data-tooltip="false" data-chart-data="vm.availableData.topAgents.barChartJson"></generic-bar-chart>
+              <div class="agent-name">{{ topAgents.title }}</div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                        
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                        <generic-bar-chart  ng-if="vm.availableData.paymentTiming1" 
+                        data-height="150"
+                        data-chart-data="vm.availableData.paymentTiming1"></generic-bar-chart>
+                    </div>
+                </div>-->
+      </div>
+    </div>
+  </div>
+
+  <!-- End of line chart and top customers row -->
+
+  <!--<div ng-if="findthatgit.currentUserType == 'BUSINESS' && findthatgit.currentStatus == 'ACTIVE' && vm.invoicePieChart.labels.length == 0"
+        class="dashboard-summary-main">
+        <h3 class="dashboard-title-inner">Sent Invoices Summary</h3>
+        <div class="c-blankslate">
+            <h2 class="c-blankslate__title">You have not sent an invoice.</h2>
+            <p class="c-blankslate__paragraph">We can't show any chart because there's no existing invoices yet.</p>
+        </div>
+    </div>-->
+
+  <!--<div ng-if="findthatgit.currentUserType == 'BUSINESS' && findthatgit.currentStatus == 'ACTIVE' && vm.invoicePieChart.labels.length > 0"
+        class="dashboard-summary-main">
+        <h3 class="dashboard-title-inner">Sent Invoices Summary</h3>
+        <div class="row auto-clear">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="dashboard-box-jumbo-summary -green">
+                    <div class="box-jumbo-header">
+                        Count
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-5">
+                            <div class="data" ng-repeat="label in vm.invoicePieChart.labels">
+                                <span class="data-label palette-pill -{{label}}">{{ label }}</span>
+                                <div class="data-value">
+                                    <span class="number">{{ vm.invoicePieChart.dataViewCount[$index] }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7">
+                            <div class="dashboard-pie-chart">
+                                <canvas class="chart chart-doughnut" chart-options="{ responsive : true }" chart-data="vm.invoicePieChart.dataViewCount"
+                                    chart-labels="vm.invoicePieChart.labels" chart-dataset-override="vm.invoicePieChart.datasetOverrideViewCount"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="dashboard-box-jumbo-summary -green">
+                    <div class="box-jumbo-header">
+                        Total Per Status
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-5">
+                            <div class="data" ng-repeat="label in vm.invoicePieChart.labels">
+                                <span class="data-label palette-pill -{{label}}">{{ label }}</span>
+                                <div class="data-value">
+                                    <span class="number">{{ vm.invoicePieChart.currency }} {{ vm.invoicePieChart.dataViewSum[$index] }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7">
+                            <div class="dashboard-pie-chart">
+                                <canvas class="chart chart-doughnut" chart-options="{ responsive : true }" chart-data="vm.invoicePieChart.dataViewSum" chart-labels="vm.invoicePieChart.labels"
+                                    chart-dataset-override="vm.invoicePieChart.datasetOverrideViewSum"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="dashboard-box-jumbo-summary -green">
+                    <div class="box-jumbo-header">
+                        Average Per Status
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-5">
+                            <div class="data" ng-repeat="label in vm.invoicePieChart.labels">
+                                <span class="data-label palette-pill -{{label}}">{{ label }}</span>
+                                <div class="data-value">
+                                    <span class="number">{{ vm.invoicePieChart.currency }} {{ vm.invoicePieChart.dataViewAverage[$index] }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7">
+                            <div class="dashboard-pie-chart">
+                                <canvas class="chart chart-doughnut" chart-options="{ responsive : true }" chart-data="vm.invoicePieChart.dataViewAverage"
+                                    chart-labels="vm.invoicePieChart.labels" chart-dataset-override="vm.invoicePieChart.datasetOverrideViewAverage"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+  <!--<div ng-if="findthatgit.currentStatus == 'ACTIVE' && vm.receivedInvoicePieChart.labels.length == 0" class="dashboard-summary-main">
+        <h3 class="dashboard-title-inner">Received Invoices Summary</h3>
+        <div class="c-blankslate">
+            <h2 class="c-blankslate__title">You have not received an invoice.</h2>
+            <p class="c-blankslate__paragraph">We can't show any chart because there's no existing invoices yet.</p>
+        </div>
+    </div>-->
+
+  <!--<div ng-if="findthatgit.currentStatus == 'ACTIVE' && vm.receivedInvoicePieChart.labels.length > 0" class="dashboard-summary-main">
+        <h3 class="dashboard-title-inner">Received Invoices Summary</h3>
+        <div class="row auto-clear">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="dashboard-box-jumbo-summary -green">
+                    <div class="box-jumbo-header">
+                        Count
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-5">
+                            <div class="data" ng-repeat="label in vm.receivedInvoicePieChart.labels">
+                                <span class="data-label palette-pill -{{label}}">{{ label }}</span>
+                                <div class="data-value">
+                                    <span class="number">{{ vm.receivedInvoicePieChart.dataViewCount[$index] }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7">
+                            <div class="dashboard-pie-chart">
+                                <canvas class="chart chart-doughnut" chart-options="{ responsive : true }" chart-data="vm.receivedInvoicePieChart.dataViewCount"
+                                    chart-labels="vm.receivedInvoicePieChart.labels" chart-dataset-override="vm.receivedInvoicePieChart.datasetOverrideViewCount"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="dashboard-box-jumbo-summary -green">
+                    <div class="box-jumbo-header">
+                        Total Per Status
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-5">
+                            <div class="data" ng-repeat="label in vm.receivedInvoicePieChart.labels">
+                                <span class="data-label palette-pill -{{label}}">{{ label }}</span>
+                                <div class="data-value">
+                                    <span class="number">{{ vm.receivedInvoicePieChart.dataViewSum[$index] }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7">
+                            <div class="dashboard-pie-chart">
+                                <canvas class="chart chart-doughnut" chart-options="{ responsive : true }" chart-data="vm.receivedInvoicePieChart.dataViewSum"
+                                    chart-labels="vm.receivedInvoicePieChart.labels" chart-dataset-override="vm.receivedInvoicePieChart.datasetOverrideViewSum"></canvas>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="dashboard-box-jumbo-summary -green">
+                    <div class="box-jumbo-header">
+                        Average Per Status
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-5">
+                            <div class="data" ng-repeat="label in vm.receivedInvoicePieChart.labels">
+                                <span class="data-label palette-pill -{{label}}">{{ label }}</span>
+                                <div class="data-value">
+                                    <span class="number">{{ vm.receivedInvoicePieChart.dataViewAverage[$index] }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-7">
+                            <div class="dashboard-pie-chart">
+                                <canvas class="chart chart-doughnut" chart-options="{ responsive : true }" chart-data="vm.receivedInvoicePieChart.dataViewAverage"
+                                    chart-labels="vm.receivedInvoicePieChart.labels" chart-dataset-override="vm.receivedInvoicePieChart.datasetOverrideViewAverage"></canvas>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>-->
+  <!-- <div ng-if="findthatgit.currentStatus == 'ACTIVE'" ng-include="'/dashboard/app/dashboard/dashboard-summary.html'"></div> -->
+  <!--<div ng-include="'/dashboard/app/dashboard/dashboard-top-customer-revenue.html'"></div>-->
+
+  <!--<div class="row">-->
+  <!--<div class="col-md-6">-->
+  <!--<div class="dashboard-widget">-->
+  <!--<h1>Installed Base Serial No.</h1>-->
+  <!--<p class="lead">-->
+  <!--oasjdisojaoidjaoidajd-->
+  <!--</p>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="col-md-6">-->
+  <!--<div class="dashboard-widget">-->
+  <!--<h1>Installed Base Serial No.</h1>-->
+  <!--<p class="lead">-->
+  <!--oasjdisojaoidjaoidajd-->
+  <!--</p>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="row">-->
+  <!--<div class="col-xs-12 col-sm-12 col-md-12">-->
+  <!--<div class="getting-started-widget">-->
+  <!--<h3 class="title">Welcome to Self-Service Portal!</h3>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="col-xs-12 col-sm-6 col-md-4">-->
+  <!--<div class="dashboard-widget-mini-summary -green clearfix">-->
+  <!--<div class="icon">-->
+  <!--<i class="streamline-business-trade"></i>-->
+  <!--</div>-->
+  <!--<div class="content">-->
+  <!--<h2>5 Completed Invoice</h2>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="col-xs-12 col-sm-6 col-md-4">-->
+  <!--<div class="dashboard-widget-mini-summary -orange clearfix">-->
+  <!--<div class="icon">-->
+  <!--<i class="streamline-business-trade"></i>-->
+  <!--</div>-->
+  <!--<div class="content">-->
+  <!--<h2>3 Pending Invoice</h2>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="col-xs-12 col-sm-6 col-md-4">-->
+  <!--<div class="dashboard-widget-mini-summary -blue clearfix">-->
+  <!--<div class="icon">-->
+  <!--<i class="streamline-business-trade"></i>-->
+  <!--</div>-->
+  <!--<div class="content">-->
+  <!--<h2>10 Processing Invoice</h2>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="col-xs-12 col-sm-12 col-md-6">-->
+  <!--<div class="dashboard-widget">-->
+  <!--<div class="header">-->
+  <!--<span class="header-title">-->
+  <!--Invoice Report-->
+  <!--</span>-->
+
+  <!--<div class="header-options">-->
+  <!--<div class="select">-->
+  <!--<select class="select">-->
+  <!--<option value="Active">All</option>-->
+  <!--<option value="Inactive">Complete</option>-->
+  <!--<option value="Inactive">Processing</option>-->
+  <!--<option value="Inactive">Pending</option>-->
+  <!--<option value="Archived">Active</option>-->
+  <!--<option value="Archived">Due</option>-->
+  <!--</select>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="content">-->
+  <!--<canvas id="dashboardBarChart" height="400"-->
+  <!--style="width: 100%; height: 300px;"></canvas>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="col-xs-12 col-sm-12 col-md-6">-->
+  <!--<div class="dashboard-widget">-->
+  <!--<div class="header">-->
+  <!--<span class="header-title">-->
+  <!--Recent Activities-->
+  <!--</span>-->
+
+  <!--<div class="header-options">-->
+  <!--<div class="select">-->
+  <!--<select class="select">-->
+  <!--<option value="Active">All</option>-->
+  <!--<option value="Inactive">Invoices</option>-->
+  <!--<option value="Inactive">Quotes</option>-->
+  <!--<option value="Inactive">Messages</option>-->
+  <!--<option value="Archived">Users</option>-->
+  <!--<option value="Archived">User Groups</option>-->
+  <!--</select>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="content">-->
+  <!--<div class="dashboard-content-summary">-->
+
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="col-xs-12 col-sm-12 col-md-6">-->
+  <!--<div class="dashboard-card">-->
+
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="col-xs-12 col-sm-12 col-md-6">-->
+  <!--<div class="dashboard-card">-->
+
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="col-xs-12 col-sm-12 col-md-6">-->
+  <!--<div class="dashboard-card">-->
+
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="col-xs-12 col-sm-12 col-md-6">-->
+  <!--<div class="dashboard-card">-->
+
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+
+</div>
