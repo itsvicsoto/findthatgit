@@ -2,6 +2,8 @@
 
 A micro project that allows you to search for users and view their repos and readme within the repo selected.
 
+Demo : https://stark-garden-62560.herokuapp.com/
+
 ## How to start and contribute
 
 * Clone the project `git clone https://github.com/itsvicsoto/findthatgit.git`
