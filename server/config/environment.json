@@ -3,5 +3,6 @@
   "API_KEY": "{API_KEY}",
   "API_SECRET_KEY": "{API_SECRET_KEY}",
   "WEB_BASE_URL": "{WEB_BASE_URL}",
-  "PORT": "8443"
+  "PORT": "3001",
+  "PORT_HTTP": 3001
 }
