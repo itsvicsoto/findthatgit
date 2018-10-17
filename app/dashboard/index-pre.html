@@ -43,6 +43,7 @@
     <!-- build:css /assets/css/application.css -->
     <link rel="stylesheet" href="/assets/css/vendor.min.css?v=%%GULP_INJECT_VERSION%%">
     <link rel="stylesheet" href="/assets/css/style.css?v=%%GULP_INJECT_VERSION%%">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/github.min.css">
     <!-- endbuild -->
 
 </head>
@@ -52,7 +53,10 @@
 <!--MENU PANEL-->
 <div ui-view class="o-body"></div>
 
+
+<script src="/assets/js/highlight.min.js?v=%%GULP_INJECT_VERSION%%"></script>
 <script src="/assets/js/vendor.min.js?v=%%GULP_INJECT_VERSION%%"></script>
+<script src="/assets/js/angular-highlightjs.min.js?v=%%GULP_INJECT_VERSION%%"></script>
 <script src="/assets/js/motherload.min.js?v=%%GULP_INJECT_VERSION%%"></script>
 <script src="/assets/js/motherload-templates.min.js?v=%%GULP_INJECT_VERSION%%"></script>
 

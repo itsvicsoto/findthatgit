@@ -17,16 +17,20 @@
 </div>
 
 <div class="c-cards-title" ng-if="vm.ui.selectedUser">
-  Projects / <span>{{ vm.ui.selectedUser.login }}</span>
+  Projects / <span ng-click="vm.ui.selectedRepo = false" style="cursor: pointer;">{{ vm.ui.selectedUser.login }}</span> <span ng-if="vm.ui.selectedRepo">/ {{ vm.ui.selectedRepo.name }}</span>
 </div>
 
-<div class="c-cards">
+<div class="c-cards" ng-hide="vm.ui.selectedRepo">
   <div ng-if="vm.models.reposResult.data.length == 0" class="c-card-empty">
     No result...
   </div>
-  <div class="c-card" ng-repeat="item in vm.models.reposResult.data">
+  <div class="c-card" ng-click="vm.actions.showReadme(item)" ng-repeat="item in vm.models.reposResult.data">
     <div>
       {{ item.name }}
     </div>
   </div>
+</div>
+
+<div class="c-readme" ng-show="vm.ui.selectedRepo">
+  <div hljs hljs-source="vm.ui.selectedReadme.data" hljs-language="markdown"></div>
 </div>

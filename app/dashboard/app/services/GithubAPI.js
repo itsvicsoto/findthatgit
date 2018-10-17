@@ -15,6 +15,9 @@
       },
       getSearchUsers: function(query) {
         return githubBaseUrl + '/search/users?q=' + query + '+type:USER';
+      },
+      getHTMLByUrl: function(url) {
+        return url;
       }
     }
   }
@@ -37,6 +40,14 @@
       getSearchUsers: function(query) {
         var options = {
           url: GithubAPIEndpoints.getSearchUsers(query),
+          method: 'GET'
+        };
+
+        return $http(options);
+      },
+      getHTMLByUrl: function(url) {
+        var options = {
+          url: GithubAPIEndpoints.getHTMLByUrl(url),
           method: 'GET'
         };
 

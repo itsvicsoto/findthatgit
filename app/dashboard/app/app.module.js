@@ -4,6 +4,9 @@
   angular
     .module('findthatgit', [
 
+      // 3rd party
+      'hljs',
+      
       // App Core
       'findthatgit.routes',
       'findthatgit.config',
