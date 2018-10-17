@@ -1,6 +1,3 @@
-var request = require('request');
-// var utils = require('../utils');
-
 module.exports = function(app) {
 
   app.get('*', function(req, res) {
