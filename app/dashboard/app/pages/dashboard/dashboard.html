@@ -1,16 +1,32 @@
 <h1 class="e-heading-title">
-  findthatgit
+  your.github.repo
 </h1>
 
-<input type="text" ng-model-options="{  debounce: 500 }" ng-change="vm.actions.searchRepo( vm.models.searcher)" ng-model=" vm.models.searcher">
+<div class="c-searcher">
+  <input type="text" class="c-searcher-input" placeholder="Search for a user..." ng-model-options="{  debounce: 500 }" ng-change="vm.actions.searchUser( vm.models.searcher)" ng-model=" vm.models.searcher">
+  <div class="c-searcher-results">
+    <div class="c-searcher-no-result" ng-if="vm.models.searchUsersResult.data.items.length == 0">
+      Can't find your user...
+    </div>
+    <div class="c-searcher-result" ng-click="vm.actions.showRepo(item)" ng-repeat="item in vm.models.searchUsersResult.data.items | limitTo: 10">
+      <span>
+          {{ item.login }}
+      </span>
+    </div>
+  </div>
+</div>
 
-<!-- {{ vm.models.reposResult | json }} -->
+<div class="c-cards-title" ng-if="vm.ui.selectedUser">
+  Projects / <span>{{ vm.ui.selectedUser.login }}</span>
+</div>
 
 <div class="c-cards">
   <div ng-if="vm.models.reposResult.data.length == 0" class="c-card-empty">
     No result...
   </div>
   <div class="c-card" ng-repeat="item in vm.models.reposResult.data">
-    {{ item.name }}
+    <div>
+      {{ item.name }}
+    </div>
   </div>
 </div>

@@ -12,6 +12,9 @@
     return {
       getAllRepoByUsername: function(username) {
         return githubBaseUrl + '/users/' + username + '/repos';
+      },
+      getSearchUsers: function(query) {
+        return githubBaseUrl + '/search/users?q=' + query + '+type:USER';
       }
     }
   }
@@ -26,6 +29,14 @@
       getAllRepoByUsername: function(username) {
         var options = {
           url: GithubAPIEndpoints.getAllRepoByUsername(username),
+          method: 'GET'
+        };
+
+        return $http(options);
+      },
+      getSearchUsers: function(query) {
+        var options = {
+          url: GithubAPIEndpoints.getSearchUsers(query),
           method: 'GET'
         };
 
