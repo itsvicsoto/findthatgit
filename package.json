@@ -4,24 +4,10 @@
   "main": "server/server.js",
   "scripts": {
     "pretest": "jshint .",
-    "start": "node server/server.js",
-    "postinstall": "bower cache clean && bower install",
-    "dev": "NODE_ENV='local' node server/server.js",
-    "dev-dashboard": "NODE_ENV='local' gulp dashboard-dev",
-    "dev-website": "NODE_ENV='local' gulp website-dev",
-    "dev-sc": "NODE_ENV='local' gulp sc-dev",
-    "staging": "NODE_ENV='staging' node server/server.js",
-    "staging-dashboard": "NODE_ENV='staging' gulp dashboard-dev",
-    "staging-website": "NODE_ENV='staging' gulp website-dev",
-    "staging-sc": "NODE_ENV='staging' gulp sc-dev",
-    "prod": "NODE_ENV='production' node server/server.js",
-    "prod-dashboard": "NODE_ENV='production' gulp dashboard-dev",
-    "prod-website": "NODE_ENV='production' gulp website-dev",
-    "prod-sc": "NODE_ENV='production' gulp sc-dev",
-    "gulp-build-local": "NODE_ENV='local' gulp dashboard-build && NODE_ENV='local' gulp website-build && NODE_ENV='local' gulp sc-build",
-    "gulp-build-stage": "NODE_ENV='staging' gulp dashboard-build && NODE_ENV='staging' gulp website-build && NODE_ENV='staging' gulp sc-build",
-    "gulp-build-prod": "NODE_ENV='production' gulp dashboard-build && NODE_ENV='production' gulp website-build && NODE_ENV='production' gulp sc-build",
-    "gulp-build": "gulp dashboard-build && gulp website-build && gulp sc-build"
+    "start": "gulp dashboard-build && node server/server.js",
+    "dev-watch": "NODE_ENV='local' node server/server.js",
+    "build": "gulp dashboard-build",
+    "postinstall": "bower cache clean && bower install"
   },
   "dependencies": {
     "async": "^2.1.2",

@@ -156,15 +156,8 @@ pipes.buildAll = function() {
   var appVendorStyles = pipes.buildVendorStyles();
   var angularTemplates = pipes.buildAngularTemplates();
   var buildIndex = pipes.buildIndex(runOnEnv);
-  var viewtemplates = pipes.buildViewTemplates(runOnEnv);
-  var webViewTemplates = pipes.buildViewWebTemplates(runOnEnv);
 
-  // return pipes.pipe(plugins.inject(appScripts, {
-  //     relative: true
-  //   }))
-  //   .pipe(plugins.inject(appStyles, {
-  //     relative: true
-  //   }))
+  return true;
 }
 
 
