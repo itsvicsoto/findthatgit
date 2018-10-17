@@ -4,7 +4,7 @@ A micro project that allows you to search for users and view their repos and rea
 
 ## How to start and contribute
 
-* Clone the project
+* Clone the project `git clone https://github.com/itsvicsoto/findthatgit.git`
 * run `npm run dev` it should install all dependencies and open `http://localhost:3001` after it's done
 
 ## How to watch changes while developing
