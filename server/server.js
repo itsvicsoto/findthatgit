@@ -59,4 +59,4 @@ var register = function(app) {
 
 register(app);
 
-http.createServer(app).listen(environment.PORT_HTTP);
+http.createServer(app).listen(process.env.PORT || environment.PORT_HTTP);
