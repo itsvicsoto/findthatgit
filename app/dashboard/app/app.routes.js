@@ -24,11 +24,11 @@
         views: {}
       })
       .state('main.home', {
-        url: '/',
+        url: '',
         data: {},
         views: {
           '@': {
-            templateUrl: 'modules/dashboard/dashboard.html',
+            templateUrl: 'pages/dashboard/dashboard.html',
             controller: 'DashboardController',
             controllerAs: 'vm'
           }

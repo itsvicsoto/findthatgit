@@ -5,8 +5,9 @@
   "scripts": {
     "pretest": "jshint .",
     "start": "node server/server.js ",
-    "dev": "npm install && bower cache clean && bower install && gulp dashboard-build && node server/server.js",
-    "build": "gulp dashboard-build",
+    "devwatch": "gulp dashboard-dev",
+    "dev": "npm install && bower cache clean && bower install && gulp dashboard-build && opn http://localhost:3001 && node server/server.js",
+    "prod": "gulp dashboard-build",
     "postinstall": "bower cache clean && bower install && gulp dashboard-build"
   },
   "dependencies": {

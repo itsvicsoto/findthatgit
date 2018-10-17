@@ -7,7 +7,13 @@
       // App Core
       'findthatgit.routes',
       'findthatgit.config',
-      'findthatgit.constant'
+      'findthatgit.constant',
+      'findthatgit.GithubAPI',
+
+      // App Pages
+      'findthatgit.dashboard'
+
+      // App Components
 
     ])
     .controller('MainController', MainController);

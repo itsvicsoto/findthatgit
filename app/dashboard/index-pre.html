@@ -41,8 +41,8 @@
     <![endif]-->
 
     <!-- build:css /assets/css/application.css -->
-    <link rel="stylesheet" href="/dashboard/assets/css/vendor.min.css?v=%%GULP_INJECT_VERSION%%">
-    <link rel="stylesheet" href="/dashboard/assets/css/style.css?v=%%GULP_INJECT_VERSION%%">
+    <link rel="stylesheet" href="/assets/css/vendor.min.css?v=%%GULP_INJECT_VERSION%%">
+    <link rel="stylesheet" href="/assets/css/style.css?v=%%GULP_INJECT_VERSION%%">
     <!-- endbuild -->
 
 </head>
@@ -50,13 +50,11 @@
 <body>
 
 <!--MENU PANEL-->
-<div ui-view></div>
+<div ui-view class="o-body"></div>
 
-<script src="%%API%%/findthatgit.js?v=%%GULP_INJECT_VERSION%%"></script>
-
-<script src="/dashboard/assets/js/vendor.min.js?v=%%GULP_INJECT_VERSION%%"></script>
-<script src="/dashboard/assets/js/motherload.min.js?v=%%GULP_INJECT_VERSION%%"></script>
-<script src="/dashboard/assets/js/motherload-templates.min.js?v=%%GULP_INJECT_VERSION%%"></script>
+<script src="/assets/js/vendor.min.js?v=%%GULP_INJECT_VERSION%%"></script>
+<script src="/assets/js/motherload.min.js?v=%%GULP_INJECT_VERSION%%"></script>
+<script src="/assets/js/motherload-templates.min.js?v=%%GULP_INJECT_VERSION%%"></script>
 
 </body>
 

@@ -1,3 +1,16 @@
-<div>
-  Hello world
+<h1 class="e-heading-title">
+  findthatgit
+</h1>
+
+<input type="text" ng-model-options="{  debounce: 500 }" ng-change="vm.actions.searchRepo( vm.models.searcher)" ng-model=" vm.models.searcher">
+
+<!-- {{ vm.models.reposResult | json }} -->
+
+<div class="c-cards">
+  <div ng-if="vm.models.reposResult.data.length == 0" class="c-card-empty">
+    No result...
+  </div>
+  <div class="c-card" ng-repeat="item in vm.models.reposResult.data">
+    {{ item.name }}
+  </div>
 </div>

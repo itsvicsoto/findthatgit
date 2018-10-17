@@ -2,6 +2,6 @@
   'use strict';
 
   angular
-    .module('findthatgit.constant')
+    .module('findthatgit.constant', [])
 
 })();

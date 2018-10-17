@@ -47,13 +47,18 @@ var register = function(app) {
     return next();
   });
 
+  app.get('/page-not-found', function(req,res) {
+    res.send('404 Page Not Found')
+  })
+
   // ROUTES
   require('./routes/dashboard')(app);
 
   // Catching All Pages that arent found
   app.use('*', function(req, res) {
-    res.redirect('/page-not-found')
+    res.send('/page-not-found')
   });
+
 
 }
 
