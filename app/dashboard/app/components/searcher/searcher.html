@@ -1,0 +1,13 @@
+<div class="c-searcher">
+  <input type="text" class="c-searcher-input" placeholder="Search for a user..." ng-model-options="{  debounce: 500 }" ng-change="vm.actions.searchUser(vm.models.searcher)" ng-model="vm.models.searcher">
+  <div class="c-searcher-results">
+    <div class="c-searcher-no-result" ng-if="vm.models.searchUsersResult.data.items.length == 0">
+      Can't find your user...
+    </div>
+    <div class="c-searcher-result" ng-click="vm.actions.showRepo(item)" ng-repeat="item in vm.models.searchUsersResult.data.items | limitTo: 10">
+      <span>
+          {{ item.login }}
+      </span>
+    </div>
+  </div>
+</div>
